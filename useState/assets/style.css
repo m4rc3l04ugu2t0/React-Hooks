@@ -1,0 +1,42 @@
+body {
+  display: grid;
+  place-items: center;
+  
+  width: 100%;
+  height: 100vh;
+}
+
+.cicle {
+  width: 250px;
+  height: 250px;
+  
+  border: 10px solid black;
+  border-top-color: darkcyan;
+  border-radius: 50%;
+}
+
+.rotate {
+  animation: rotate-cicle infinite 15s linear;
+}
+
+.rotate-reverce {
+  animation: rotate-cicle-reverce infinite 15s linear;
+}
+
+@keyframes rotate-cicle {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+
+@keyframes rotate-cicle-reverce {
+  from {
+    transform: rotate(360deg)
+  }
+  to {
+    transform: rotate(0deg)
+  }
+}

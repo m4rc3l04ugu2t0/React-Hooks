@@ -3,12 +3,12 @@ SystemJS.config({
   defaultExtension: true,
   packages: {
     ".": {
-      main: './app.js',
-      defaultExtension: 'js'
+      main: './app.jsx',
+      defaultExtension: 'jsx'
     }
   },
   meta: {
-    '*.js': {
+    '*.jsx': {
       'babelOptions': {
         react: true
       }
