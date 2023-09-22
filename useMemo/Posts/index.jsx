@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const Posts = ({ post }) => {
-  console.log('son rendered')
+  console.log('children rendered')
   
   return (
     <div>
