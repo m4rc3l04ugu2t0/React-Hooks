@@ -1,10 +1,15 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 
-import { useState} from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 
-export const App = () => {
+import { Posts } from '/useRef/Posts/index.jsx'
+
+const App = () => {
   const [ posts, setPosts ] = useState([])
+  const [ searchValue, setSearchValue ] = useState('')
+  const inputSearch = useRef(null)
+  const counter = useRef(0)
   
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/posts')
@@ -12,22 +17,47 @@ export const App = () => {
       .then(response => setPosts(response))
   }, [])
   
+  useEffect(() => {
+    inputSearch.current.focus()
+  }, [searchValue])
+  
+  useEffect(() => {
+    counter.current++
+  })
+  
+  const handleClickP = (value) => {
+    setSearchValue(value)
+  }
+  
+  console.log('parent component rendered')
+  
   return (
     <div>
-      { posts.map(post => {
+      <input type="search"
+        ref={ inputSearch }
+        value={ searchValue }
+        onChange={ e => setSearchValue(e.target.value)}
+      />
+      
+      { useMemo(() => {
         return (
-          <div key={ post.id }>
-            <h1>{ post.title }</h1>
-            <p>{ post.body }</p>
-          </div>
+          posts.length === 0 ? 'loading posts...' :
+          posts.map(post => {
+            return (
+              <Posts key={ post.id }
+              post={ post }
+              handleClickP={ handleClickP }
+              />
+            )
+          })
         )
-      })
-      }
+      }, [posts])}
+      <p>Renderizou: { counter.current }x</p>
     </div>
   )
 }
 
-ReactDom.render (
+ReactDom.render(
   <App />,
   document.getElementById('react-app')
 )
