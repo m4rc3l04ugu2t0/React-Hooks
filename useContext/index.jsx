@@ -1,27 +1,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-//import { createContext } from 'react'
+
+import { useState } from 'react'
 
 import { Header } from '/useContext/components/Header/index.jsx'
+import { Body } from '/useContext/components/Body/index.jsx'
 
-const globalState = {
+export const globalState = {
   title: 'O título do contexto',
+  body: 'body contexto',
   counter: 0
 }
 
-const GlobalContext = React.createContext()
+export const GlobalContext = React.createContext()
 
 const App = () => {
+  const [ state, setState ] = useState(globalState)
+  
   return (
     <GlobalContext.Provider value={ globalState }>
       <div>
         <Header />
+        <Body />
       </div>
     </GlobalContext.Provider>
   )
 }
 
 ReactDOM.render (
-  <App />,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('react-app')
 )

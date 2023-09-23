@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import { Main } from '/useState/main.jsx'
 
 ReactDOM.render(
-  <Main />,
+  <React.StrictMode>
+    <Main />
+  </React.StrictMode>,
   document.getElementById('react-app')
 );
