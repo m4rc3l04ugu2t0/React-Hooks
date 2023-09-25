@@ -1,15 +1,14 @@
 import React from 'react'
 
-import { GlobalContext } from '/useContext/index.jsx'
-
 import { useContext } from 'react'
+
+import { GlobalContext } from '/useContext/AppContext/index.jsx'
 
 export const H1 = () => {
   const theContext = useContext(GlobalContext)
-  
-  console.log(theContext)
+  const { stateContext: { title, counter } } = theContext
   
   return (
-    <h1>{ theContext.title }</h1>
+    <h1>{ title } { counter }</h1>
   )
 }
