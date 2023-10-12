@@ -14,11 +14,11 @@ const useMediaQuery = (queryValue, initialValue = false) => {
 
     const handleChange = () => {
       if (!isMounted) return;
-      setMatch(Boolean(matchMedia.matches));
+      setMatch(matchMedia.matches);
     };
 
     matchMedia.addEventListener('change', handleChange);
-    setMatch(!!matchMedia.matches);
+    setMatch(matchMedia.matches);
 
     return () => {
       isMounted = false;
